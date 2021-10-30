@@ -2,19 +2,19 @@ package com.hilt.ui.login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.hilt.ui.db.LoginModel
+import com.hilt.ui.repo.login.LoginRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(): ViewModel() {
+class LoginViewModel @Inject constructor(private val loginRepo : LoginRepo): ViewModel() {
     var email = MutableLiveData<String>()
     var password = MutableLiveData<String>()
-    var userMutableLiveData: MutableLiveData<Loginuser> = MutableLiveData()
+    var userMutableLiveData: MutableLiveData<LoginUser> = MutableLiveData()
     fun onClick() {
-        val loginUser = Loginuser(email = email.value,pwd = password.value)
+        val loginUser = LoginUser(email = email.value,pwd = password.value)
         userMutableLiveData.value = loginUser
     }
-
+fun getLoginDetails(email:String?) = loginRepo.getLoginDetails(email!!)
 }

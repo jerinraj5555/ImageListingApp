@@ -35,9 +35,16 @@ class SignupFragment : Fragment() {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initObservables()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.userSignUpMutableLiveData.observe(viewLifecycleOwner, {
+    }
+
+    private fun initObservables() {
+        viewModel.userSignUpMutableLiveData.observe(this, {
             when {
                 !it.email.isValidEmail() -> {
                     updateView(binding.etEmail, getString(R.string.email_error))
@@ -62,9 +69,6 @@ class SignupFragment : Fragment() {
             }
 
         })
-//        binding.buttonSecond.setOnClickListener {
-//           // findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-//        }
     }
 
     private fun updateView(view: TextInputEditText, msg: String?) {

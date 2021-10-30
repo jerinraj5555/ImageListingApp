@@ -23,6 +23,6 @@
             android:id="@+id/action_SecondFragment_to_LoginFragment"
             app:destination="@id/LoginFragment"
             app:popUpTo="@id/LoginFragment"
-            app:popUpToInclusive="true" />
+             />
     </fragment>
 </navigation>
