@@ -33,7 +33,7 @@ class LoginFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initobservable()
+        initLivedata()
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,8 +42,9 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun init() {
-        loginViewModel.userMutableLiveData.observe(this, Observer {
+    private fun initLivedata() {
+        loginViewModel.userMutableLiveData.observe(this
+            , Observer {
             when {
                 !it.email.isValidEmail() -> {
                     binding.etEmail.error = getString(R.string.email_error)
@@ -56,10 +57,11 @@ class LoginFragment : Fragment() {
                     return@Observer
                 }
                 else -> {
-                    loginViewModel.getLoginDetails(it.email!!).asLiveData()
-                        .observe(viewLifecycleOwner) { it1 ->
-                            if (it1.email.equals(it.email, ignoreCase = true)
-                                && it.pwd.equals(it1.password)
+                    loginViewModel.getLoginDetails(it.email!!)?.asLiveData()
+                        ?.observe(viewLifecycleOwner) { it1 ->
+
+                            if (it1?.email.equals(it.email, ignoreCase = true)
+                                && it.pwd.equals(it1?.password)
                             )
                                 requireContext().toast(getString(R.string.login_success))
                             else
