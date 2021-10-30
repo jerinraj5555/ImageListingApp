@@ -13,7 +13,7 @@ class LoginViewModel @Inject constructor(private val loginRepo : LoginRepo): Vie
     var password = MutableLiveData<String>()
     var userMutableLiveData: MutableLiveData<LoginUser> = MutableLiveData()
     fun onClick() {
-        val loginUser = LoginUser(email = email.value,pwd = password.value)
+        val loginUser = LoginUser(email = email.value?.trim(),pwd = password.value?.trim())
         userMutableLiveData.value = loginUser
     }
 fun getLoginDetails(email:String?) = loginRepo.getLoginDetails(email!!)

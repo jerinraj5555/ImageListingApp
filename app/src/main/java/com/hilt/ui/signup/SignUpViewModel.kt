@@ -17,7 +17,8 @@ class SignUpViewModel @Inject constructor(private val loginRepo : LoginRepo): Vi
     var password = MutableLiveData<String>()
 
     fun onValidateAndSave(){
-        val signup = SignUp(email = email.value,password1 = password.value,password2 = rePassword.value)
+        val signup = SignUp(email = email.value?.trim(),
+            password1 = password.value?.trim(),password2 = rePassword.value?.trim())
         userSignUpMutableLiveData.value = signup
     }
      fun insert(login:LoginModel){
