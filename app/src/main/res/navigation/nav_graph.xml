@@ -9,10 +9,20 @@
         android:id="@+id/LoginFragment"
         android:name="com.hilt.ui.login.LoginFragment"
         android:label="@string/login_fragment_label"
-        tools:layout="@layout/login_fragment"/>
+        tools:layout="@layout/login_fragment">
+        <action
+            android:id="@+id/action_LoginFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+    </fragment>
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.hilt.ui.signup.SignupFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_signup"/>
+        tools:layout="@layout/fragment_signup">
+        <action
+            android:id="@+id/action_SecondFragment_to_LoginFragment"
+            app:destination="@id/LoginFragment"
+            app:popUpTo="@id/LoginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

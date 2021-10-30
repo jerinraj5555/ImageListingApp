@@ -8,8 +8,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.hilt.ui.R
 import com.hilt.ui.databinding.LoginFragmentBinding
+import com.hilt.ui.isValidEmail
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,27 +29,31 @@ class LoginFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.loginViewModel = loginViewModel
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loginViewModel.userMutableLiveData.observe(viewLifecycleOwner, Observer {
-            if (!it.email.isValidEmail()) {
-                binding.etEmail.error = getString(R.string.email_error)
-                binding.etEmail.requestFocus()
-                return@Observer
-            } else if (it.password.isNullOrBlank()) {
-                binding.etPwd.error = getString(R.string.pwd_error)
-                binding.etPwd.requestFocus()
-                return@Observer
-            } else {
-                Toast.makeText(requireContext(), "Login successfully", Toast.LENGTH_SHORT).show()
+            when {
+                !it.email.isValidEmail() -> {
+                    binding.etEmail.error = getString(R.string.email_error)
+                    binding.etEmail.requestFocus()
+                    return@Observer
+                }
+                it.pwd.isNullOrBlank() -> {
+                    binding.etPwd.error = getString(R.string.pwd_error)
+                    binding.etPwd.requestFocus()
+                    return@Observer
+                }
+                else -> {
+                    
+                    Toast.makeText(requireContext(), getString(R.string.login_success), Toast.LENGTH_SHORT).show()
+                }
             }
         })
-//        binding.buttonFirst.setOnClickListener {
-//            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-//        }
+        binding.tvRegister.setOnClickListener {
+            findNavController().navigate(R.id.action_LoginFragment_to_SecondFragment)
+        }
     }
 
     override fun onDestroyView() {

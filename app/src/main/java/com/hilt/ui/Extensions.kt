@@ -1,4 +1,4 @@
-package com.hilt.ui.login
+package com.hilt.ui
 
 import android.util.Patterns
 
