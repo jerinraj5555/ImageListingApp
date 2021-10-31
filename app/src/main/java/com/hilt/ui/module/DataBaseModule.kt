@@ -3,6 +3,7 @@ package com.hilt.ui.module
 import android.app.Application
 import androidx.room.Room
 import com.hilt.ui.db.Database
+import com.hilt.ui.db.ImageListDao
 import com.hilt.ui.db.LoginDao
 import dagger.Module
 import dagger.Provides
@@ -25,6 +26,12 @@ class DataBaseModule {
     @Provides
     fun provideLoginDao(db: Database): LoginDao {
         return db.getLogin()
+    }
+
+    @Singleton
+    @Provides
+    fun provideImageDao(db: Database): ImageListDao {
+        return db.getImages()
     }
 
 

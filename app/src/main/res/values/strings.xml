@@ -21,5 +21,6 @@
     <string name="pwd_wrng">Wrong password</string>
     <string name="register">Register</string>
     <string name="login_failure">Login failed,Please check the credentials.</string>
+    <string name="no_netwrk">Please check internet connectivity</string>
 
 </resources>

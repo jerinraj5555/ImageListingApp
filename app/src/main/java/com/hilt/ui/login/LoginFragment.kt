@@ -9,10 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
-import com.hilt.ui.R
+import com.hilt.ui.*
 import com.hilt.ui.databinding.LoginFragmentBinding
-import com.hilt.ui.isValidEmail
-import com.hilt.ui.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -62,8 +60,11 @@ class LoginFragment : Fragment() {
 
                             if (it1?.email.equals(it.email, ignoreCase = true)
                                 && it.pwd.equals(it1?.password)
-                            )
+                            ) {
                                 requireContext().toast(getString(R.string.login_success))
+                                findNavController().navigate(R.id.action_LoginFragment_to_imageListFragment)
+
+                            }
                             else
                                 requireContext().toast(getString(R.string.login_failure))
                         }
