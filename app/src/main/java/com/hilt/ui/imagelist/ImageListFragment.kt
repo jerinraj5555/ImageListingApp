@@ -16,7 +16,8 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class ImageListFragment : Fragment() {
-    @Inject lateinit var adapter: ImageAdapter
+    @Inject
+    lateinit var adapter: ImageAdapter
     private var _binding: FragmentImageListBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ImageListViewModel by viewModels()
@@ -25,27 +26,27 @@ class ImageListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentImageListBinding.inflate(inflater, container, false)
-      //  binding.vm = viewModel
+        //  binding.vm = viewModel
         //binding.lifecycleOwner = this
-        binding.rlView.layoutManager =  LinearLayoutManager(requireContext())
+        binding.rlView.layoutManager = LinearLayoutManager(requireContext())
         binding.rlView.adapter = adapter
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(!Utility.hasNetworkAvailable(requireContext()))
+        if (!Utility.hasNetworkAvailable(requireContext()))
             viewModel.fetchAllMovies()
         init()
     }
 
-   private fun init(){
-       viewModel.getAllMoviesListFromDb().asLiveData().observe(viewLifecycleOwner,
-           {
-               if(!it.isNullOrEmpty())
+    private fun init() {
+        viewModel.getAllMoviesListFromDb().asLiveData().observe(viewLifecycleOwner,
+            {
+                if (!it.isNullOrEmpty())
                     adapter.setList(it)
-           })
-   }
+            })
+    }
 
 
 }

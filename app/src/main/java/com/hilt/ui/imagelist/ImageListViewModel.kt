@@ -14,7 +14,7 @@ import javax.inject.Inject
 class ImageListViewModel @Inject constructor(
     private val nwRepo: ImageNetworkRepository,
     private val localRepo: ImageLocalRepo
-    ) : ViewModel() {
+) : ViewModel() {
     val progressBarStatus = MutableLiveData<Boolean>()
 
     fun fetchAllMovies() {
@@ -22,9 +22,9 @@ class ImageListViewModel @Inject constructor(
         CoroutineScope(Dispatchers.IO).launch {
             val response = nwRepo.getAllImages()
             if (response.isSuccessful) {
-                    response.body()?.let {
-                        localRepo.insertAll(it.subList(0,9))
-                    }
+                response.body()?.let {
+                    localRepo.insertAll(it.subList(0, 9))
+                }
             }
         }
         progressBarStatus.value = false

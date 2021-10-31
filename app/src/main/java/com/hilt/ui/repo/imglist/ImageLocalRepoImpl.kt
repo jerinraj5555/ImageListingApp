@@ -2,10 +2,9 @@ package com.hilt.ui.repo.imglist
 
 import com.hilt.ui.db.ImageEntity
 import com.hilt.ui.db.ImageListDao
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class ImageLocalRepoImpl @Inject constructor(private val dao: ImageListDao):ImageLocalRepo {
+class ImageLocalRepoImpl @Inject constructor(private val dao: ImageListDao) : ImageLocalRepo {
     override suspend fun insertAll(list: List<ImageEntity>) {
         dao.insert(list)
     }

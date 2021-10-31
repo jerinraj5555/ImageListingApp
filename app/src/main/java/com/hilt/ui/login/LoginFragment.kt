@@ -33,6 +33,7 @@ class LoginFragment : Fragment() {
         super.onCreate(savedInstanceState)
         initLivedata()
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.tvRegister.setOnClickListener {
@@ -41,8 +42,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun initLivedata() {
-        loginViewModel.userMutableLiveData.observe(this
-            , Observer {
+        loginViewModel.userMutableLiveData.observe(this, Observer {
             when {
                 !it.email.isValidEmail() -> {
                     binding.etEmail.error = getString(R.string.email_error)
@@ -64,8 +64,7 @@ class LoginFragment : Fragment() {
                                 requireContext().toast(getString(R.string.login_success))
                                 findNavController().navigate(R.id.action_LoginFragment_to_imageListFragment)
 
-                            }
-                            else
+                            } else
                                 requireContext().toast(getString(R.string.login_failure))
                         }
                 }

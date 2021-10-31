@@ -16,6 +16,7 @@ import dagger.hilt.android.components.ViewModelComponent
 interface DbModule {
     @Binds
     fun provideLocalDb(localRepoImpl: LoginRepoImpl): LoginRepo
+
     @Binds
     fun provideImgLocalDb(imgRepoImpl: ImageLocalRepoImpl): ImageLocalRepo
 

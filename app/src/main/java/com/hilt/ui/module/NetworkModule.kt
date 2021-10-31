@@ -18,7 +18,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideOkHttp() : OkHttpClient{
+    fun provideOkHttp(): OkHttpClient {
         return OkHttpClient.Builder()
             .build()
     }
@@ -36,8 +36,8 @@ object NetworkModule {
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-                //https://picsum.photos/v2/list
-                //https://jsonplaceholder.typicode.com/
+            //https://picsum.photos/v2/list
+            //https://jsonplaceholder.typicode.com/
             .baseUrl("https://picsum.photos/v2/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)

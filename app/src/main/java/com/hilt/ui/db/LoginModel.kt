@@ -8,6 +8,6 @@ import androidx.room.PrimaryKey
 )
 data class LoginModel(
     @PrimaryKey
-    var email:String,
-    var password:String?
-    )
+    var email: String,
+    var password: String?
+)

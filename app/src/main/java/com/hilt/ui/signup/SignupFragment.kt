@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import com.hilt.ui.R
@@ -39,6 +38,7 @@ class SignupFragment : Fragment() {
         super.onCreate(savedInstanceState)
         initObservables()
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
@@ -63,7 +63,7 @@ class SignupFragment : Fragment() {
                     return@observe
                 }
                 else -> {
-                    viewModel.insert(LoginModel(it.email!!,it.password1))
+                    viewModel.insert(LoginModel(it.email!!, it.password1))
                     findNavController().navigate(R.id.action_SecondFragment_to_LoginFragment)
                 }
             }
