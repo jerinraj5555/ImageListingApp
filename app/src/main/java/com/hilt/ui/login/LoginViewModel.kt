@@ -2,6 +2,7 @@ package com.hilt.ui.login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.hilt.ui.BuildConfig
 import com.hilt.ui.repo.login.LoginRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -14,8 +15,10 @@ class LoginViewModel @Inject constructor(private val loginRepo: LoginRepo) : Vie
     var userMutableLiveData: MutableLiveData<LoginUser> = MutableLiveData()
 
     init {
-        email.value = "1@1.com"
-        password.value = "1"
+        if(BuildConfig.DEBUG) {
+            email.value = "1@1.com"
+            password.value = "1"
+        }
     }
 
     fun onClick() {
