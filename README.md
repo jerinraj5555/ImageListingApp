@@ -4,7 +4,7 @@
  <ul>
   <li>Login and sign up page: handle input validation and save the data on device</li>
    <li>Home page: Using the free images API to load a list of images vertically and handle clicks on each.</li>
-   <li>Room to save the loaded images offline. The app should be able to work if the connection was lost.</li>
+   <li>Saved the loaded images offline. The app should be able to work if the connection was lost.</li>
  </ul>
 
 Built With 🛠
